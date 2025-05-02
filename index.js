@@ -1,74 +1,39 @@
-class Node {
-  constructor(data) {
-    this.data = data;
-    this.next = null;
-  }
-}
-
-class LinkedList {
+class Stack {
   constructor() {
-    this.head = null;
+    this.stack = [];
   }
-  append(data) {
-    let temp = new Node(data);
-    if (!this.head) {
-      this.head = temp;
-      return;
+  push(data) {
+    this.stack.push(data);
+  }
+  pop() {
+    if (this.isEmpty()) {
+      return "stack is empty";
     }
-    let current = this.head;
-    while (current.next) {
-      current = current.next;
+    return this.stack.pop();
+  }
+  peek() {
+    if (this.isEmpty()) {
+      return "satck is empty";
     }
-    current.next = temp;
+    return this.stack[this.stack.length - 1];
+  }
+  isEmpty() {
+    return this.stack.length === 0;
+  }
+  size() {
+    return this.stack.length;
   }
   print() {
-    let current = this.head;
-    let result = "";
-    while (current) {
-      result += current.data + "->";
-      current = current.next;
-    }
-    console.log(result + "null");
-  }
-  delete(data) {
-    if (!this.head) {
-      console.log("list is empty no element to delete");
-      return;
-    }
-    if (this.head.data === data) {
-      this.head = this.head.next;
-      return;
-    }
-    let current = this.head;
-    let prev = null;
-    while (current.data !== data) {
-      prev = current;
-      current = current.next;
-    }
-    if (!current) {
-      console.log("value is not found in list");
-      return;
-    }
-    prev.next = current.next;
-  }
-  find(data) {
-    let current = this.head;
-    while (current) {
-      if (current.data == data) {
-        return true;
-      }
-      current = current.next;
-    }
-    return false;
+    console.log(this.stack);
   }
 }
 
-let list = new LinkedList();
-list.append(10);
-list.append(20);
-list.append(30);
-list.print();
-console.log(list.find(30));
-list.delete(30);
-console.log(list.find(10));
-list.print();
+const stack = new Stack();
+stack.push(10);
+stack.push(20);
+stack.push(30);
+console.log(stack.peek());
+console.log(stack.pop());
+console.log(stack.size());
+console.log(stack.isEmpty());
+stack.print();
