@@ -1,39 +1,24 @@
-class Stack {
-  constructor() {
-    this.stack = [];
-  }
-  push(data) {
-    this.stack.push(data);
-  }
-  pop() {
-    if (this.isEmpty()) {
-      return "stack is empty";
-    }
-    return this.stack.pop();
-  }
-  peek() {
-    if (this.isEmpty()) {
-      return "satck is empty";
-    }
-    return this.stack[this.stack.length - 1];
-  }
-  isEmpty() {
-    return this.stack.length === 0;
-  }
-  size() {
-    return this.stack.length;
-  }
-  print() {
-    console.log(this.stack);
+let matrix = [
+  [1, 2, 3, 4],
+  [5, 6, 7, 8],
+  [9, 10, 11, 12],
+  [13, 14, 15, 16],
+];
+let n = 4;
+function printDownToUpMatrix(row, col) {
+  while (row >= 0 && col < n) {
+    console.log(matrix[row][col]);
+    row--, col++;
   }
 }
 
-const stack = new Stack();
-stack.push(10);
-stack.push(20);
-stack.push(30);
-console.log(stack.peek());
-console.log(stack.pop());
-console.log(stack.size());
-console.log(stack.isEmpty());
-stack.print();
+function print() {
+  for (let i = 0; i < n; i++) {
+    printDownToUpMatrix(i, 0);
+  }
+  for (let i = 1; i < n; i++) {
+    printDownToUpMatrix(n - 1, i);
+  }
+}
+
+print();
