@@ -1,24 +1,46 @@
-let matrix = [
-  [1, 2, 3, 4],
-  [5, 6, 7, 8],
-  [9, 10, 11, 12],
-  [13, 14, 15, 16],
-];
-let n = 4;
-function printDownToUpMatrix(row, col) {
-  while (row >= 0 && col < n) {
-    console.log(matrix[row][col]);
-    row--, col++;
+let setA = new Set([1, 2, 3, 4]);
+let setB = new Set([3, 4, 5, 6]);
+
+function intersection(setA, setB) {
+  let intersectionSet = new Set();
+  for (let ele of setA) {
+    if (setB.has(ele)) {
+      intersectionSet.add(ele);
+    }
   }
+  return intersectionSet;
 }
 
-function print() {
-  for (let i = 0; i < n; i++) {
-    printDownToUpMatrix(i, 0);
+function isSuperSet(setA, subset) {
+  for (let ele of subset) {
+    if (!setA.has(ele)) {
+      return false;
+    }
   }
-  for (let i = 1; i < n; i++) {
-    printDownToUpMatrix(n - 1, i);
-  }
+  return true;
 }
 
-print();
+function union(setA, setB) {
+  let unionSet = new Set(setA);
+  for (let ele of setB) {
+    unionSet.add(ele);
+  }
+  return unionSet;
+}
+
+function difference(setA, setB) {
+  let differenceSet = new Set(setA);
+  for (let ele of setB) {
+    differenceSet.delete(ele);
+  }
+  return differenceSet;
+}
+
+function uniqueList(arr1, arr2) {
+  let unique = new Set(arr1.concat(arr2));
+  return Array.from(unique);
+}
+
+let setC = uniqueList([1, 1, 2, 2], [2, 3, 4, 5]);
+
+console.log(setC);
