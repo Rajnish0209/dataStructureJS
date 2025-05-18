@@ -1,46 +1,31 @@
-let setA = new Set([1, 2, 3, 4]);
-let setB = new Set([3, 4, 5, 6]);
-
-function intersection(setA, setB) {
-  let intersectionSet = new Set();
-  for (let ele of setA) {
-    if (setB.has(ele)) {
-      intersectionSet.add(ele);
+let arr = [4, -1, 5, 2, -3, 0];
+function bubbleSort(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length - i - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
+        let temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+      }
     }
   }
-  return intersectionSet;
 }
 
-function isSuperSet(setA, subset) {
-  for (let ele of subset) {
-    if (!setA.has(ele)) {
-      return false;
+function selectionSort(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    let minIdx = i;
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[minIdx] > arr[j]) {
+        minIdx = j;
+      }
+    }
+    if (minIdx !== i) {
+      let temp = arr[i];
+      arr[i] = arr[minIdx];
+      arr[minIdx] = temp;
     }
   }
-  return true;
 }
 
-function union(setA, setB) {
-  let unionSet = new Set(setA);
-  for (let ele of setB) {
-    unionSet.add(ele);
-  }
-  return unionSet;
-}
-
-function difference(setA, setB) {
-  let differenceSet = new Set(setA);
-  for (let ele of setB) {
-    differenceSet.delete(ele);
-  }
-  return differenceSet;
-}
-
-function uniqueList(arr1, arr2) {
-  let unique = new Set(arr1.concat(arr2));
-  return Array.from(unique);
-}
-
-let setC = uniqueList([1, 1, 2, 2], [2, 3, 4, 5]);
-
-console.log(setC);
+selectionSort(arr);
+console.log(arr);
