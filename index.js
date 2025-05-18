@@ -27,5 +27,16 @@ function selectionSort(arr) {
   }
 }
 
-selectionSort(arr);
+function insertionSort(arr) {
+  let value, i, j;
+  for (i = 0; i < arr.length; i++) {
+    value = arr[i];
+    for (j = i - 1; j > -1 && arr[j] > value; j--) {
+      arr[j + 1] = arr[j];
+    }
+    arr[j + 1] = value;
+  }
+}
+
+insertionSort(arr);
 console.log(arr);
